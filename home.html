@@ -27,6 +27,24 @@
         margin: 4px 2px;
         cursor: pointer;
     }
+    .buttonButton {
+        width: 160px;
+        height: 50px;
+        float: right;
+        top: -100px;
+        right: 0;
+        position: absolute;
+        animation: slideIn 2s forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            top: -100px;
+        }
+        to {
+            top: 0;
+        }
+    }
     .weez {
         float: left;
         bottom: 0;
@@ -45,6 +63,7 @@
     <h1>Hello and welcome to my virtual portfolio! I will have some of my work here and a page about me.</h1>
     <h2>About Me Page <a href='aboutMe.html'><button>Click Me</button></a></h2>
     <h2> Pew Pew Game <a href='game1.html'><button>Perchance a game?</button></a></h2>
+    <h2 class="buttonButton"> <a href='game2.html'><button>Runaway Button!</button></a></h2>
     <img class=connor src="img/connor2.png" alt="Connor Yeager" width="500" height="500">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/SChnJDfmrSU?si=enimd23_tVkAHUzh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <iframe class=weez width="560" height="315" src="https://www.youtube.com/embed/MAREvZsLpO8?si=dVUQGqmlE0-6WPIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
