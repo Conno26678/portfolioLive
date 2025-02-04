@@ -34,15 +34,18 @@
         top: -100px;
         right: 0;
         position: absolute;
-        animation: slideIn 2s forwards;
+        animation: slideInOut 4s infinite;
     }
 
-    @keyframes slideIn {
-        from {
+    @keyframes slideInOut {
+        0% {
             top: -100px;
         }
-        to {
+        50% {
             top: 0;
+        }
+        100% {
+            top: -100px;
         }
     }
     .weez {
