@@ -36,6 +36,7 @@
         const button = document.getElementById('movingButton');
         const scoreElement = document.getElementById('score');
         const highScoreElement = document.getElementById('highScore');
+        
         let score = 0;
         let highScore = getCookie('highScore') ? parseInt(getCookie('highScore')) : 0;
         highScoreElement.textContent = highScore;
@@ -43,6 +44,7 @@
         const maxX = window.innerWidth - button.offsetWidth;
         const maxY = window.innerHeight - button.offsetHeight;
 
+        //button runs away from mouse
         function moveButtonAway(event) {
             const mouseX = event.clientX;
             const mouseY = event.clientY;
@@ -69,7 +71,7 @@
             score++;
             scoreElement.textContent = score;
 
-            // Update high score
+
             if (score > highScore) {
                 highScore = score;
                 highScoreElement.textContent = highScore;
