@@ -9,7 +9,7 @@
             background-color: black;
             color: white;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
         }
         button {
@@ -25,7 +25,6 @@
             cursor: pointer;
             width: 120px;
             height: 100px;
-            
         }
         button:hover {
             transition: background-color 0.8s ease;
@@ -35,9 +34,16 @@
 </head>
 <body>
     <h1>Catch the Button!</h1>
-    <button id="movingButton" style="position: absolute;">Catch Me!</button>
+    <h2>Score: <span id="score">0</span> | High Score: <span id="highScore">0</span></h2>
+    <button onclick="score()" id="movingButton" style="position: absolute;">Catch Me!</button>
     <script>
         const button = document.getElementById('movingButton');
+        const scoreElement = document.getElementById('score');
+        const highScoreElement = document.getElementById('highScore');
+        let score = 0;
+        let highScore = getCookie('highScore') ? parseInt(getCookie('highScore')) : 0;
+        highScoreElement.textContent = highScore;
+
         const maxX = window.innerWidth - button.offsetWidth;
         const maxY = window.innerHeight - button.offsetHeight;
 
@@ -47,21 +53,32 @@
             let newX = Math.random() * maxX;
             let newY = Math.random() * maxY;
 
-
             if (mouseX < newX) {
-                newX = Math.min(newX + 100, maxX);
+            newX = Math.min(newX + 100, maxX);
             } else {
-                newX = Math.max(newX - 100, 0);
+            newX = Math.max(newX - 100, 0);
             }
 
             if (mouseY < newY) {
-                newY = Math.min(newY + 100, maxY);
+            newY = Math.min(newY + 100, maxY);
             } else {
-                newY = Math.max(newY - 100, 0);
+            newY = Math.max(newY - 100, 0);
             }
 
+            button.style.transition = 'left 1.2s ease, top 1.2s ease';
             button.style.left = `${newX}px`;
             button.style.top = `${newY}px`;
+
+            // Update score
+            score++;
+            scoreElement.textContent = score;
+
+            // Update high score
+            if (score > highScore) {
+                highScore = score;
+                highScoreElement.textContent = highScore;
+                setCookie('highScore', highScore, 365);
+            }
         }
 
         button.addEventListener('mouseover', moveButtonAway);
@@ -69,7 +86,24 @@
         // Initial position
         button.style.left = `${Math.random() * maxX}px`;
         button.style.top = `${Math.random() * maxY}px`;
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
     </script>
- </script>
 </body>
 </html>
